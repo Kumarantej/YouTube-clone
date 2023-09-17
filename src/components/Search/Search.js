@@ -1,9 +1,11 @@
 import React from "react";
-import { FaSearch } from "react-icons/fa";
+import YouTubeMicIcon from "../../assets/svg/YouTubeMicIcon";
+import YouTubeSearchIcon from "../../assets/svg/YouTubeSearchIcon";
+
 const Search = () => {
   return (
-    <div className="flex gap-4">
-      <div className="w-[640px] flex">
+    <div className="flex gap-4 w-full justify-center">
+      <div className="flex w-full max-w-[642px]">
         <input
           style={{ border: "1px solid #303030" }}
           type="search"
@@ -11,11 +13,11 @@ const Search = () => {
           placeholder="Search"
         />
         <button className="w-16 bg-gray-700 flex justify-center items-center rounded-r-3xl">
-          <FaSearch fill="#fff" />
+          <YouTubeSearchIcon />
         </button>
       </div>
-      <div className="w-10 bg-gray-700 rounded-full flex justify-center items-center">
-        <FaSearch fill="#fff" />
+      <div className="w-10 bg-gray-700 rounded-full flex justify-center items-center cursor-pointe">
+        <YouTubeMicIcon />
       </div>
     </div>
   );

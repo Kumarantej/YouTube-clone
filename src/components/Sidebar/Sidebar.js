@@ -24,7 +24,7 @@ import YouTubeReportHistoryIcon from "../../assets/svg/YouTubeReportHistoryIcon"
 import YouTubeHelpIcon from "../../assets/svg/YouTubeHelpIcon";
 import YouTubeSendFeedBackIcon from "../../assets/svg/YouTubeSendFeedBackIcon";
 
-const Sidebar = () => {
+const Sidebar = ({ showSidebar }) => {
   const [active, setActive] = useState("Home");
 
   const youTubeTopSection = [
@@ -209,10 +209,33 @@ const Sidebar = () => {
     },
   ];
 
+  const miniSidebarIcons = [
+    {
+      defaultIcon: <YouTubeHomeIcon />,
+      activeIcon: <YouTubeHomeIcon isActive />,
+      label: "Home",
+    },
+    {
+      defaultIcon: <YouTubeShortIcon />,
+      activeIcon: <YouTubeShortIcon isActive />,
+      label: "Shorts",
+    },
+    {
+      defaultIcon: <YouTubeSubScriptionIcon />,
+      activeIcon: <YouTubeSubScriptionIcon isActive />,
+      label: "Subscriptions",
+    },
+    {
+      defaultIcon: <YouTubeLibraryIcon />,
+      activeIcon: <YouTubeLibraryIcon isActive />,
+      label: "Library",
+    },
+  ];
+
   function youTubeIconSidebarTop(youTubeSidebarContent, label) {
     return (
       <>
-        <div className="p-3">
+        <div className="m-2">
           {label && (
             <h6 className="text-md text-white pl-3 p-[4px]"> {label}</h6>
           )}
@@ -255,19 +278,53 @@ const Sidebar = () => {
     );
   }
 
+  function miniSidebar(miniSidebarIcons) {
+    return (
+      <ul className="px-1 flex flex-wrap text-[13px] pt-[12px]">
+        {miniSidebarIcons.map((ytTop, index) => {
+          const isActive = ytTop.label === active;
+          const itemClass = `text-sm w-[74px] text-white flex flex-col column py-2 items-center rounded-[10px] cursor-pointer hover:bg-gray-600 ${
+            isActive ? " bg-gray-600 hover:bg-gray-500" : ""
+          }`;
+          return (
+            <div
+              onClick={() => setActive(ytTop.label)}
+              key={index}
+              className={itemClass}
+            >
+              {isActive ? ytTop.activeIcon : ytTop.defaultIcon}
+
+              <span className="text-[10px]"> {ytTop.label}</span>
+            </div>
+          );
+        })}
+      </ul>
+    );
+  }
+
   return (
-    <div className="w-[242px]  h-[94vh] custom-scrollbar hover:overflow-y-auto fixed ">
-      {youTubeIconSidebarTop(youTubeTopSection)}
-      {youTubeIconSidebarTop(youTubeTopSectionSecond)}
-      {youTubeIconSidebarTop(youTubeExploreSection, "Explore")}
-      {youTubeIconSidebarTop(moreFromYouTube, "More from YouTube")}
-      {youTubeIconSidebarTop(YouTubeBottomSection)}
-      <div className="p-3 text-gray-400">
-        {youTubeIconSidebarBottom(footerSectionTop)}
-        {youTubeIconSidebarBottom(footerSectionBottom)}
-      </div>
-      <div className="text-xs mx-6 my-4 text-gray-300">© 2023 Google LLC</div>
-    </div>
+    <>
+      {showSidebar ? (
+        <div className="w-[72px] bg-gray-900 h-[94vh] custom-scrollbar hover:overflow-y-auto fixed">
+          {miniSidebar(miniSidebarIcons)}
+        </div>
+      ) : (
+        <div className="w-60 bg-gray-900 h-[94vh] custom-scrollbar hover:overflow-y-auto fixed">
+          {youTubeIconSidebarTop(youTubeTopSection)}
+          {youTubeIconSidebarTop(youTubeTopSectionSecond)}
+          {youTubeIconSidebarTop(youTubeExploreSection, "Explore")}
+          {youTubeIconSidebarTop(moreFromYouTube, "More from YouTube")}
+          {youTubeIconSidebarTop(YouTubeBottomSection)}
+          <div className="p-2 text-gray-300">
+            {youTubeIconSidebarBottom(footerSectionTop)}
+            {youTubeIconSidebarBottom(footerSectionBottom)}
+          </div>
+          <div className="text-xs mx-6 my-4 text-gray-300">
+            © 2023 Google LLC
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

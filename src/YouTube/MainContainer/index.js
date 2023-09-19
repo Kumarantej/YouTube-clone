@@ -1,20 +1,25 @@
 import React, { useState } from "react";
-import "./scroll.css";
 import { selectTags, ytVideo } from "./data";
 import HoverVideoPlayer from "react-hover-video-player";
 import User from "../../assets/images/Virat_Kohli.jpg";
 import { Link } from "react-router-dom";
 
-const MainContainer = () => {
+const MainContainer = ({ showSidebar }) => {
   const [active, setActive] = useState("All");
 
   return (
-    <div className="pl-[242px] w-calc[100% - 242px]">
-      <div className="text-white flex gap-3 h-[56px] overflow-x-auto ml-6 overflow-y-hidden ">
+    <div
+      className={` bg-gray-900 ${
+        showSidebar
+          ? " pl-[72px] w-calc[100% - 72px]"
+          : "pl-[242px] w-calc[100% - 242px]"
+      }`}
+    >
+      <div className="text-white flex gap-3 h-[56px] overflow-x-auto ml-6 overflow-y-hidden scrollbar-hide ">
         {selectTags.map((tag, index) => {
           const isActive = tag.label === active;
-          const itemClass = `bg-gray-600 whitespace-nowrap leading-[172%] text-sm py-[4px] px-3 my-3 h-[32px] rounded-[10px]  hover:bg-gray-700 cursor-pointer ${
-            isActive ? "bg-gray-100 text-black hover:bg-white" : ""
+          const itemClass = `bg-gray-600 whitespace-nowrap leading-[172%] text-sm py-[4px] px-3 my-3 h-[32px] rounded-[10px] hover:bg-gray-400 cursor-pointer ${
+            isActive ? "bg-white text-black hover:bg-white" : ""
           }`;
           return (
             <div
@@ -63,16 +68,16 @@ const MainContainer = () => {
                     <img
                       className="min-h-[36px] min-w-[36px] w-9 h-9 rounded-full"
                       src={User}
-                      alt=""
+                      alt="image"
                     />
                     <div className="ml-3 overflow-hidden">
                       <p className="text-sm font-medium text-white font-bold mb-2">
                         Lorem ipsum dolor sit amet, consecte adipiscing elit.
                       </p>
-                      <p className="text-xs text-gray-400 truncate">
+                      <p className="text-xs text-gray-400 font-semibold truncate">
                         James Gouse
                       </p>
-                      <p className="text-xs text-gray-400 truncate">
+                      <p className="text-xs text-gray-400 font-semibold truncate">
                         15K Views .1 week ago
                       </p>
                     </div>

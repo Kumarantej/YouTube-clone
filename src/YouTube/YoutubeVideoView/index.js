@@ -4,6 +4,7 @@ import YouTube from "react-youtube";
 import { selectTags, ytVideo } from "../MainContainer/data";
 import { useLocation } from "react-router-dom";
 import HoverVideoPlayer from "react-hover-video-player";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 const YouTubeVideo = () => {
   const [active, setActive] = useState("All");
@@ -22,10 +23,16 @@ const YouTubeVideo = () => {
       autoplay: 1,
     },
   };
+  const [showSidebar, setShowSidebar] = useState(false);
+  const toggle = () => {
+    setShowSidebar(!showSidebar);
+  };
 
   return (
     <div className="bg-gray-900 h-screen overflow-hidden w-[100%]">
-      <Navbar />
+      <div className="">{showSidebar && <Sidebar toggle={toggle} />}</div>
+
+      <Navbar setShowSidebar={toggle} />
       <div className="flex container mx-auto gap-6 h-[94vh] overflow-y-auto mt-6 scrollbar-hide">
         <div className="w-5/6">
           <div className="h-[50%]">
@@ -61,7 +68,7 @@ const YouTubeVideo = () => {
               return (
                 <div className="flex gap-2 pt-2 " key={index}>
                   <HoverVideoPlayer
-                    className="min-w-[168px] w-[168px] cursor-pointer min-h-[94px]"
+                    className=" w-[168px] cursor-pointer min-h-[94px]"
                     videoSrc="https://youtu.be/E07s5ZYygMg?t=10"
                     pausedOverlay={
                       <>

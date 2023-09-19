@@ -9,7 +9,7 @@ import AvatarImage from "../AvatarImage";
 
 const Navbar = ({ setShowSidebar }) => {
   return (
-    <div className=" bg-gray-900 w-full h-14 flex justify-between items-center px-6">
+    <div className=" bg-gray-900 w-full h-14 flex justify-between items-center px-2">
       <div className="w-1/6 flex gap-6 items-center">
         <div
           className="hover:bg-gray-600 w-10 rounded-full h-10 flex items-center justify-center cursor-pointer"

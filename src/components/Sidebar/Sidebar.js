@@ -23,8 +23,10 @@ import YouTubeSettingIcon from "../../assets/svg/YouTubeSettingIcon";
 import YouTubeReportHistoryIcon from "../../assets/svg/YouTubeReportHistoryIcon";
 import YouTubeHelpIcon from "../../assets/svg/YouTubeHelpIcon";
 import YouTubeSendFeedBackIcon from "../../assets/svg/YouTubeSendFeedBackIcon";
+import RedLogo from "../../assets/svg/youTubeRedLogo.svg";
+import Hamburger from "../../assets/svg/hamburger.svg";
 
-const Sidebar = ({ showSidebar }) => {
+const Sidebar = ({ showSidebar, toggle }) => {
   const [active, setActive] = useState("Home");
 
   const youTubeTopSection = [
@@ -309,20 +311,36 @@ const Sidebar = ({ showSidebar }) => {
           {miniSidebar(miniSidebarIcons)}
         </div>
       ) : (
-        <div className="w-60 bg-gray-900 h-[94vh] custom-scrollbar hover:overflow-y-auto fixed">
-          {youTubeIconSidebarTop(youTubeTopSection)}
-          {youTubeIconSidebarTop(youTubeTopSectionSecond)}
-          {youTubeIconSidebarTop(youTubeExploreSection, "Explore")}
-          {youTubeIconSidebarTop(moreFromYouTube, "More from YouTube")}
-          {youTubeIconSidebarTop(YouTubeBottomSection)}
-          <div className="p-2 text-gray-300">
-            {youTubeIconSidebarBottom(footerSectionTop)}
-            {youTubeIconSidebarBottom(footerSectionBottom)}
+        <>
+          <div className="w-60 bg-gray-900 h-[94vh] custom-scrollbar hover:overflow-y-auto fixed">
+            {toggle && (
+              <div className="w-full flex gap-6 items-center my-2 pl-2">
+                <div
+                  className="hover:bg-gray-600 rounded-full h-10  w-10 flex items-center justify-center cursor-pointer"
+                  onClick={() => {
+                    toggle();
+                  }}
+                >
+                  <img src={Hamburger} alt="hamburgerIcon" />
+                </div>
+                <img src={RedLogo} alt="logo" />
+              </div>
+            )}
+
+            {youTubeIconSidebarTop(youTubeTopSection)}
+            {youTubeIconSidebarTop(youTubeTopSectionSecond)}
+            {youTubeIconSidebarTop(youTubeExploreSection, "Explore")}
+            {youTubeIconSidebarTop(moreFromYouTube, "More from YouTube")}
+            {youTubeIconSidebarTop(YouTubeBottomSection)}
+            <div className="p-2 text-gray-300">
+              {youTubeIconSidebarBottom(footerSectionTop)}
+              {youTubeIconSidebarBottom(footerSectionBottom)}
+            </div>
+            <div className="text-xs mx-6 my-4 text-gray-300">
+              © 2023 Google LLC
+            </div>
           </div>
-          <div className="text-xs mx-6 my-4 text-gray-300">
-            © 2023 Google LLC
-          </div>
-        </div>
+        </>
       )}
     </>
   );

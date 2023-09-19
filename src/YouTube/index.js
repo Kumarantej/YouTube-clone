@@ -7,11 +7,10 @@ const YouTubeApp = () => {
   const toggle = () => {
     setShowSidebar(!showSidebar);
   };
-  console.log(showSidebar);
   return (
     <div className="bg-gray-900 h-screen overflow-hidden">
       <Navbar setShowSidebar={toggle} />
-      <Sidebar  showSidebar={showSidebar}/>
+      <Sidebar showSidebar={showSidebar} />
       <MainContainer showSidebar={showSidebar} />
     </div>
   );

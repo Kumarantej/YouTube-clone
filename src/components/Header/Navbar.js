@@ -19,7 +19,9 @@ const Navbar = ({ setShowSidebar }) => {
         >
           <img src={Hamburger} alt="hamburgerIcon" />
         </div>
-        <img src={RedLogo} alt="logo" />
+        <a href="/">
+          <img src={RedLogo} alt="logo" />
+        </a>
       </div>
       <div className="flex w-1/2 justify-center">
         <Search />

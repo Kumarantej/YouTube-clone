@@ -26,7 +26,7 @@ import YouTubeSendFeedBackIcon from "../../assets/svg/YouTubeSendFeedBackIcon";
 import RedLogo from "../../assets/svg/youTubeRedLogo.svg";
 import Hamburger from "../../assets/svg/hamburger.svg";
 
-const Sidebar = ({ showSidebar, toggle }) => {
+const Sidebar = ({ showSidebar, toggle, containerRef }) => {
   const [active, setActive] = useState("Home");
 
   const youTubeTopSection = [
@@ -307,12 +307,18 @@ const Sidebar = ({ showSidebar, toggle }) => {
   return (
     <>
       {showSidebar ? (
-        <div className="w-[72px] bg-gray-900 h-[94vh] custom-scrollbar hover:overflow-y-auto fixed">
+        <div
+          className="w-[72px] bg-gray-900 h-[94vh] custom-scrollbar hover:overflow-y-auto fixed"
+          ref={containerRef}
+        >
           {miniSidebar(miniSidebarIcons)}
         </div>
       ) : (
         <>
-          <div className="w-60 bg-gray-900 h-[94vh] custom-scrollbar hover:overflow-y-auto fixed">
+          <div
+            className="w-60 bg-gray-900 h-[94vh] custom-scrollbar hover:overflow-y-auto fixed"
+            ref={containerRef}
+          >
             {toggle && (
               <div className="w-full flex gap-6 items-center my-2 pl-2">
                 <div
@@ -323,7 +329,9 @@ const Sidebar = ({ showSidebar, toggle }) => {
                 >
                   <img src={Hamburger} alt="hamburgerIcon" />
                 </div>
-                <img src={RedLogo} alt="logo" />
+                <a href="/">
+                  <img src={RedLogo} alt="logo" />
+                </a>
               </div>
             )}
 

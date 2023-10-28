@@ -3,7 +3,12 @@ import { selectTags, ytVideo } from "./data";
 
 import YouTubeVideoList from "../../components/YouTubeVideoList";
 
-const MainContainer = ({ showSidebar }) => {
+const MainContainer = ({
+  showSidebar,
+  youTubeVideoList,
+  isLoading,
+  channelDetails,
+}) => {
   const [active, setActive] = useState("All");
 
   return (
@@ -33,7 +38,11 @@ const MainContainer = ({ showSidebar }) => {
       </div>
 
       <div className="m-6 mr-0 pr-6 h-[84vh] overflow-y-auto grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        <YouTubeVideoList videoPlayerList={ytVideo} />
+        <YouTubeVideoList
+          videoPlayerList={ytVideo}
+          youTubeVideoList={youTubeVideoList}
+          channelDetails={channelDetails}
+        />
       </div>
     </div>
   );
